@@ -1,0 +1,23 @@
+# Fdb version 3
+["pdflatex"] 1705521448 "/home/smaug/pro3600-MarsLander/meta/treedir.tex" "treedir.pdf" "treedir" 1705521448
+  "/etc/texmf/web2c/texmf.cnf" 1677243942 475 c0e671620eb5563b2130f56340a5fde8 ""
+  "/home/smaug/pro3600-MarsLander/meta/treedir.tex" 1705521448 1213 c11519766d1e54e85f88d9b5f9f5ed91 ""
+  "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
+  "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm" 1136768653 768 1321e9409b4137d6fb428ac9dc956269 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb" 1248133631 31099 c85edf1dd5b9e826d67c9c7293b6786c ""
+  "/usr/share/texlive/texmf-dist/tex/generic/dirtree/dirtree.sty" 1355443861 1883 4aee9c0e00b4a0c2729c07aa1ea41bad ""
+  "/usr/share/texlive/texmf-dist/tex/generic/dirtree/dirtree.tex" 1355443861 5890 e9acda8da77544e04e1e6041a77a14c7 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/base/article.cls" 1636758526 20144 8a7de377ae7a11ee924a7499611f5a9d ""
+  "/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo" 1636758526 8448 96f18c76bf608a36ee6fbf021ac1dd32 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def" 1642022539 29921 f0f4f870357ebfb8fe58ed9ed4ee9b92 ""
+  "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
+  "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
+  "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1705518238 4379155 98693266ff65f58d9f98aff394de12d2 ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1705518270 2800356 dcd98211090c6940370bd79f99d85c62 ""
+  "treedir.aux" 1705521448 32 044b7f8fc9779af7531264e0c5c84b6d "pdflatex"
+  "treedir.tex" 1705521448 1213 c11519766d1e54e85f88d9b5f9f5ed91 ""
+  (generated)
+  "treedir.aux"
+  "treedir.log"
+  "treedir.pdf"

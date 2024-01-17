@@ -1,0 +1,15 @@
+[0] Config.pm:307> INFO - This is Biber 2.17
+[0] Config.pm:310> INFO - Logfile is 'livrable.blg'
+[112] biber:340> INFO - === Wed Jan 17, 2024, 23:17:17
+[127] Biber.pm:418> INFO - Reading 'livrable.bcf'
+[194] Biber.pm:972> INFO - Found 1 citekeys in bib section 0
+[207] Biber.pm:4383> INFO - Processing section 0
+[217] Biber.pm:4574> INFO - Looking for bibtex file 'references.bib' for section 0
+[218] bibtex.pm:1713> INFO - LaTeX decoding ...
+[220] bibtex.pm:1518> INFO - Found BibTeX data source 'references.bib'
+[234] UCollate.pm:68> INFO - Overriding locale 'fr-FR' defaults 'variable = shifted' with 'variable = non-ignorable'
+[235] UCollate.pm:68> INFO - Overriding locale 'fr-FR' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[235] Biber.pm:4203> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'fr-FR'
+[235] Biber.pm:4209> INFO - No sort tailoring available for locale 'fr-FR'
+[239] bbl.pm:654> INFO - Writing 'livrable.bbl' with encoding 'UTF-8'
+[240] bbl.pm:757> INFO - Output to livrable.bbl
