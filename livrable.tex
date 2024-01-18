@@ -19,6 +19,13 @@
 \begin{document}
 \onecolumn
 \maketitle
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.2]{images/logo-tsp-fond-blanc.png}
+    \caption{Logo TSP}\label{fig:logo}
+\end{figure}
+
 \tableofcontents
 \twocolumn
 \pagebreak
@@ -36,12 +43,10 @@ L'idée est donc de trouver une trajectoire fonctionnelle.
 
 La surface de Mars est représenté localement par une suite continue de segments.
 Parmis ces segments un et un seul est rigouresement vertical, celui-ci définit la zone d'atterissage que la navette doit viser.
-
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.2]{images/cave_map.jpeg}
-    \caption{Exemple de carte du problème}
-    \label{fig:map}
+    \caption{Exemple de carte du problème}\label{fig:map}
 \end{figure}
 
 \subsubsection{Espace des Etats}
@@ -56,8 +61,6 @@ L'état du vaisseau est représenté par un vecteur de 7 valeurs:
     \item $rotate$: angle de rotation
     \item $power$: puissance des moteurs
 \end{itemize}
-
-
 Certains de ces paramètres est borné par une valeur minimale et maximale que voici: 
 
 \begin{itemize}
@@ -79,6 +82,7 @@ Mais les commandes de puissance des fusées et de l’angle de rotation sont bor
 \end{itemize}
 
 \subsubsection{Conditions d'atterrissage}
+
 Les conditions d'atterissage doivent être représentées:
 \begin{itemize}
     \item atterrir sur un terrain plat
@@ -87,16 +91,36 @@ Les conditions d'atterissage doivent être représentées:
     \item la vitesse horizontale doit être limitée ($\le 20m.s^{-1}$ en valeur absolue)
 \end{itemize}
 
+\subsubsection{Algorithme Génétique}
+
+Les algorithmes génétiques sont des algorithmes d'optimisation stochastique inspirés de la théorie de l'évolution naturelle.
+Ils sont basés sur le principe de \textbf{sélection naturelle}.\\
+Dans un premier temps on génère une \textbf{population} de solution aléatoire, puis on évalue la qualité de chaque solution.
+On sélectionne fait ensuite évoluer cette population à travers des phénomènes semblables à la sélection naturelle tel que la \textbf{sélection}, la \textbf{reproduction} et la \textbf{mutation}.
+On répète ce processus jusqu'à ce qu'une solution satisfaisante soit trouvée.
+Dans notre problème, une solution est définie par une trajectoire, c'est à dire une suite de commande à effectuer par le vaisseau.\\
+L'évolution d'une population de solution se fait donc en plusieurs étapes:
+\begin{itemize}
+    \item \textbf{Sélection}: On sélectionne les meilleurs solutions de la population
+    \item \textbf{Reproduction}: On fait se reproduire des solutions choisies aléatoirement
+    \item \textbf{Mutation}: On applique une mutation à la nouvelle génération afin d'explorer de nouveaux espaces
+\end{itemize}
+Le calcul du score peut dépendre de nombreux paramètres, dans notre cas on a choisi de prendre en compte les paramètres suivants:
+\begin{itemize}
+    \item La \textbf{distance} au sol qui sépare la zone de collision et d'atterissage
+    \item Les \textbf{vitesses} verticale et horizontale 
+    \item L'\textbf{angle} d'inclinaison du vaisseau à l'atterissage
+\end{itemize}
+
+
 \subsection{Objectif}
 
-
 Notre objectif est de résoudre ce problème à l'aide d'une approche heuristique, les algorithmes génétiques. 
-
 Pour cela on à définit plusieurs points afin de mener à bien notre projet: 
 \begin{itemize}
-    \item Création d'une interface graphique sur pygame
-    \item Mise en place d'une interface client permettant de piloter la navette
-    \item Création de trajectoire répondant au problème notamment à l'aide d'algorithme génétique    
+    \item Création d'une \textbf{interface graphique} sur pygame
+    \item Mise en place d'une \textbf{interface client} permettant de piloter la navette
+    \item Calcul de \textbf{solution} notamment à l'aide d'algorithme génétique    
 \end{itemize}
 
 \subsubsection{Cahier des charges}
@@ -109,35 +133,46 @@ Développer une applicattion avec interface graphique. Les fonctionnalités atte
     \item Adapter l'affichage en fonction de la solution
 \end{itemize}
 
+\subsection{Organisation du projet}
 
+\subsubsection{Répartition des tâches}
 
-\subsubsection{Algorithme Génétique}
-
-Les algorithmes génétiques sont des algorithmes d'optimisation stochastique inspirés de la théorie de l'évolution naturelle.
-Ils sont basés sur le principe de sélection naturelle et de génétique.
-
-Dans un premier temps on génère une population de solution aléatoire, puis on évalue la qualité de chaque solution.
-On sélectionne ensuite les meilleurs solutions afin de les faire se reproduire et créer une nouvelle génération de solution.
-On répète ce processus jusqu'à ce qu'une solution satisfaisante soit trouvée.
-
-Dans notre problème, une solution est définie par une trajectoire, c'est à dire une suite de commande à effectuer par le vaisseau.
-
-L'évolution d'une population de solution se fait en plusieurs étapes:
+En claire la répartition des tâches est la suivante:
 \begin{itemize}
-    \item \textbf{Sélection}: On sélectionne les meilleurs solutions de la population
-    \item \textbf{Reproduction}: On fait se reproduire des solutions choisies aléatoirement
-    \item \textbf{Mutation}: On applique une mutation à la nouvelle génération afin d'explorer de nouveaux espaces
+    \item \textbf{Augustin Bresset}\\
+        Développement de l'environnement et des solutions 
+    \item \textbf{Zacharie March}\\
+        Développement de l'interface graphique et de l'interface client
+\end{itemize}
+Dans les deux cas, un apprentissage de la librairie pygame est nécessaire. Que ce soit pour la création de la solution "manuelle" (contrôle par l'utilisateur)
+ou pour la création de l'interface graphique.
+
+\subsubsection{Outils de travail}
+
+Afin de communiquer, nous nous reposons pour la communication active sur plusieurs outils, étant deux,
+nous n'étions pas restreint par le besoin de créer un groupe sur un outil de communication.
+Pour la commun passive nous avons créée une organization sur Github dans laquelle on peut trouver deux repertoire:
+\begin{itemize}
+    \item \textbf{backend}: Contient le code source du projet
+    \item \textbf{meta}: Contient la documentation du projet (et ce livrable)
+\end{itemize}
+
+\subsubsection{Organisation du code}
+
+Afin de faciliter la lecture du code ainsi que le développement, nous avons séparer en plusieurs modules le code source:
+\begin{itemize}
+    \item \textbf{environment}: Contient le code source de l'environnement
+    \item \textbf{gui}: Contient le code source de l'interface graphique
+    \item \textbf{solution}: Contient le code source des solutions
+    \item \textbf{utils}: Contient le code source des fonctions utilitaires
 \end{itemize}
 
 
-Le calcul du score peut dépendre de nombreux paramètres, dans notre cas on a choisi de prendre en compte les paramètres suivants:
-\begin{itemize}
-    \item La distance au sol qui sépare la zone de collision et d'atterissage
-    \item Les vitesses verticale et horizontale 
-    \item L'angle d'inclinaison du vaisseau à l'atterissage
-\end{itemize}
 
 \section{Développement}
+
+
+
 \subsection{Architecture du projet}
 
 \subsubsection{Environnement}
