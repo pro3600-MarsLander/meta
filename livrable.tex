@@ -17,7 +17,11 @@
 \addbibresource{references.bib} %Imports bibliography file
 
 \begin{document}
+\onecolumn
 \maketitle
+\tableofcontents
+\twocolumn
+\pagebreak
 
 \section{Introduction}
 
@@ -85,6 +89,7 @@ Les conditions d'atterissage doivent être représentées:
 
 \subsection{Objectif}
 
+
 Notre objectif est de résoudre ce problème à l'aide d'une approche heuristique, les algorithmes génétiques. 
 
 Pour cela on à définit plusieurs points afin de mener à bien notre projet: 
@@ -93,6 +98,18 @@ Pour cela on à définit plusieurs points afin de mener à bien notre projet:
     \item Mise en place d'une interface client permettant de piloter la navette
     \item Création de trajectoire répondant au problème notamment à l'aide d'algorithme génétique    
 \end{itemize}
+
+\subsubsection{Cahier des charges}
+
+Développer une applicattion avec interface graphique. Les fonctionnalités attendues sur l'application sont les suivantes:
+\begin{itemize}
+    \item Choix de la solution à utiliser
+    \item Choix de la carte à utiliser
+    \item Exécution de la simulation
+    \item Adapter l'affichage en fonction de la solution
+\end{itemize}
+
+
 
 \subsubsection{Algorithme Génétique}
 
@@ -104,8 +121,6 @@ On sélectionne ensuite les meilleurs solutions afin de les faire se reproduire 
 On répète ce processus jusqu'à ce qu'une solution satisfaisante soit trouvée.
 
 Dans notre problème, une solution est définie par une trajectoire, c'est à dire une suite de commande à effectuer par le vaisseau.
-
-
 
 L'évolution d'une population de solution se fait en plusieurs étapes:
 \begin{itemize}
@@ -122,6 +137,7 @@ Le calcul du score peut dépendre de nombreux paramètres, dans notre cas on a c
     \item L'angle d'inclinaison du vaisseau à l'atterissage
 \end{itemize}
 
+\section{Développement}
 \subsection{Architecture du projet}
 
 \subsubsection{Environnement}
@@ -139,7 +155,7 @@ L'environnement est composé de plusieurs classes:
 
 \subsubsection{Gui}
 
-\subsubsection{Solution}
+\subsubsection{Solution}    
 
 Une solution est définie par une classe abstraite \textbf{AbstractSolution} qui permet de définir les méthodes communes à toutes les solutions.
 On a ensuite deux types de solutions:
