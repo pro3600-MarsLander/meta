@@ -1,6 +1,5 @@
 \documentclass[french,a4paper,10pt,twocolumn]{article}
 \usepackage{graphicx} % Required for inserting images
-\usepackage{graphicx} % Required for inserting images
 \usepackage[style=authoryear, backend=biber]{biblatex}
 \usepackage[left=1cm,right=1cm,top=1cm,bottom=2cm]{geometry}
 \usepackage[style=authoryear, backend=biber]{biblatex}
@@ -91,7 +90,9 @@ Les conditions d'atterissage doivent être représentées:
     \item la vitesse horizontale doit être limitée ($\le 20m.s^{-1}$ en valeur absolue)
 \end{itemize}
 
-\subsubsection{Algorithme Génétique}
+\subsection{Algorithme Génétique}
+
+Afin de résoudre ce problème, nous avons choisi d'utiliser une approche heuristique, les algorithmes génétiques.
 
 Les algorithmes génétiques sont des algorithmes d'optimisation stochastique inspirés de la théorie de l'évolution naturelle.
 Ils sont basés sur le principe de \textbf{sélection naturelle}.\\
@@ -99,12 +100,13 @@ Dans un premier temps on génère une \textbf{population} de solution aléatoire
 On sélectionne fait ensuite évoluer cette population à travers des phénomènes semblables à la sélection naturelle tel que la \textbf{sélection}, la \textbf{reproduction} et la \textbf{mutation}.
 On répète ce processus jusqu'à ce qu'une solution satisfaisante soit trouvée.
 Dans notre problème, une solution est définie par une trajectoire, c'est à dire une suite de commande à effectuer par le vaisseau.\\
-L'évolution d'une population de solution se fait donc en plusieurs étapes:
-\begin{itemize}
-    \item \textbf{Sélection}: On sélectionne les meilleurs solutions de la population
-    \item \textbf{Reproduction}: On fait se reproduire des solutions choisies aléatoirement
-    \item \textbf{Mutation}: On applique une mutation à la nouvelle génération afin d'explorer de nouveaux espaces
-\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{images/schema_simple_algorithme_genetique.png}
+    \caption{\cite[]{schema_genetic_algorithm_image}}\label{fig:genetic_algorithm}
+\end{figure}
+
 Le calcul du score peut dépendre de nombreux paramètres, dans notre cas on a choisi de prendre en compte les paramètres suivants:
 \begin{itemize}
     \item La \textbf{distance} au sol qui sépare la zone de collision et d'atterissage
@@ -171,19 +173,17 @@ Afin de faciliter la lecture du code ainsi que le développement, nous avons sé
 
 \section{Développement}
 
-
-
 \subsection{Architecture du projet}
 
 \subsubsection{Environnement}
 
 L'environnement est composé de plusieurs classes:
 \begin{itemize}
-    \item \textbf{Environment}: Classe principale de l'environnement, elle permet de gérer les interactions entre les entités et l'environnement
+    \item \textbf{Environment}: Objet permettant de gérer les interactions entre les entités et l'environnement
     \item \textbf{Surface}: Classe permettant de gérer la surface de Mars
     \item \textbf{Lander}: Classe permettant de gérer le vaisseau
     \item \textbf{Action}: Classe permettant de gérer les actions du vaisseau
-    \item \textbf{Utils}: Classe permettant de gérer les constantes et les fonctions utilitaires
+    \item \textbf{Utils}: Ensemble de fonctions utilitaires et constantes 
     \item \textbf{Entity}: Classe abstraite permettant de gérer les entités
     \item \textbf{Constants}: Classe permettant de gérer les constantes
 \end{itemize}
@@ -198,6 +198,15 @@ On a ensuite deux types de solutions:
     \item \textbf{ManualSolution}: Solution manuelle permettant de piloter le vaisseau à l'aide du clavier
     \item \textbf{GeneticSolution}: Solution génétique permettant de piloter le vaisseau à l'aide d'un algorithme génétique
 \end{itemize}
+
+\subsection{Problèmes rencontrés}
+
+Tout au long du projet, on a essayé de garder une architecture de code permettant une meilleure répartition des processus
+tout en gardant une cohérence dans le code. 
+
+Nous voulions diviser les repertoires github entre le frontend et le backend, mais nous avons finalement pas rencontrés ce besoins étant donné
+que l'on travaillait sur le même langage. C'est pourquoi le nom du repertoire est \textbf{backend}.
+
 
 
 

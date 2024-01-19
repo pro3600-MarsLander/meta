@@ -32,6 +32,19 @@
       \verb https://www.codingame.com/multiplayer/optimization/mars-lander
       \endverb
     \endentry
+    \entry{schema_genetic_algorithm_image}{online}{}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labeldatesource}{nodate}
+      \field{labeltitlesource}{title}
+      \field{title}{Schéma d'un algorithme génétique}
+      \verb{urlraw}
+      \verb https://fr.wikipedia.org/wiki/Algorithme_g%C3%A9n%C3%A9tique
+      \endverb
+      \verb{url}
+      \verb https://fr.wikipedia.org/wiki/Algorithme_g%C3%A9n%C3%A9tique
+      \endverb
+    \endentry
   \enddatalist
 \endrefsection
 \endinput
