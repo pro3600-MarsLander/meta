@@ -32,6 +32,19 @@
       \verb https://www.codingame.com/multiplayer/optimization/mars-lander
       \endverb
     \endentry
+    \entry{ccw_intersect_detection}{online}{}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labeldatesource}{nodate}
+      \field{labeltitlesource}{title}
+      \field{title}{CCW}
+      \verb{urlraw}
+      \verb https://bryceboe.com/2006/10/23/line-segment-intersection-algorithm/
+      \endverb
+      \verb{url}
+      \verb https://bryceboe.com/2006/10/23/line-segment-intersection-algorithm/
+      \endverb
+    \endentry
     \entry{schema_genetic_algorithm_image}{online}{}
       \field{sortinit}{S}
       \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}

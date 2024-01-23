@@ -10,6 +10,26 @@
 \usepackage{amsmath}
 \usepackage[french]{babel}
 
+\usepackage{listings}
+
+% Configuration du style pour Python
+\lstdefinestyle{python}{
+    language=Python,
+    basicstyle=\ttfamily,
+    numbers=left,
+    numberstyle=\tiny,
+    frame=single,
+}
+
+% Configuration du style pour Bash
+\lstdefinestyle{bash}{
+    language=Bash,
+    basicstyle=\ttfamily,
+    numbers=left,
+    numberstyle=\tiny,
+    frame=single,
+}
+
 \title{PRO3600: Mars Lander}
 \author{Augustin Bresset | Zacharie March}
 \date{January 2024}
@@ -26,7 +46,6 @@
 \end{figure}
 
 \tableofcontents
-\twocolumn
 \pagebreak
 
 \section{Introduction}
@@ -117,7 +136,7 @@ Le calcul du score peut dépendre de nombreux paramètres, dans notre cas on a c
 
 \subsection{Objectif}
 
-Notre objectif est de résoudre ce problème à l'aide d'une approche heuristique, les algorithmes génétiques. 
+Afin de bien étudier le problème et l'influence des hyperparamètres de la solution , nous avons décidé de créer une interface graphique.
 Pour cela on à définit plusieurs points afin de mener à bien notre projet: 
 \begin{itemize}
     \item Création d'une \textbf{interface graphique} sur pygame
@@ -175,6 +194,24 @@ Afin de faciliter la lecture du code ainsi que le développement, nous avons sé
 
 \subsection{Architecture du projet}
 
+Afin de mener notre projet à bien, nous avons décidé de découper le code en plusieurs modules.
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{images/class_diagram.png}
+    \caption{Architecture du projet}\label{fig:architecture}
+
+\end{figure}
+
+
+Comme vue dans la figure \ref{fig:architecture}, le projet est composé de plusieurs modules:
+\begin{itemize}
+    \item \textbf{Environment}: Module permettant de gérer l'environnement
+    \item \textbf{Gui}: Module permettant de gérer l'interface graphique
+    \item \textbf{Solution}: Module permettant de gérer les solutions
+    \item \textbf{Score}: Module permettant de gérer le scoring
+\end{itemize}
+Et à cela s'ajoute un module \textbf{Utils} qui contient des fonctions utilitaires.
+
 \subsubsection{Environnement}
 
 L'environnement est composé de plusieurs classes:
@@ -188,7 +225,13 @@ L'environnement est composé de plusieurs classes:
     \item \textbf{Constants}: Classe permettant de gérer les constantes
 \end{itemize}
 
+
 \subsubsection{Gui}
+\begin{itemize}
+    \item \textbf{Gui}: Classe permettant de gérer l'interface graphique
+    \item \textbf{Menue}: Fonction permettant l'affichage du menue
+    \item \textbf{Utils}: Ensemble de fonctions utilitaires et constantes
+\end{itemize}
 
 \subsubsection{Solution}    
 
@@ -199,17 +242,106 @@ On a ensuite deux types de solutions:
     \item \textbf{GeneticSolution}: Solution génétique permettant de piloter le vaisseau à l'aide d'un algorithme génétique
 \end{itemize}
 
+\subsubsection{Score}
+
+Le score est calculé à l'aide de la classe \textbf{ScoreManager} qui permet d'attribuer un score à une trajectoire. 
+Pour cela il va venir calculer différents résultats sur l'environnement avant qu'il ne soit réinitialisé avant une prochaine simulation.
+
+
+\subsubsection{Utils}
+
+Le module \textbf{Utils} contient des fonctions utilitaires et des constantes utilisées dans les autres modules et notamment les classes
+\textbf{Point} et \textbf{Segment}.
+
+\textbf{Point}\\
+La classe Point permet de représenter un point dans un espace à deux dimensions. Il lui ait associé des fonctions permettant de calculer la distance et de gérer
+les égalités entre deux points. 
+On a considérer ici que deux points étaient égaux si leurs coordonnées étaient assez proches.
+
+\textbf{Segment}\\
+La classe Segment permet de représenter un segment dans un espace à deux dimensions.
+Sa méthode la plus utile est la méthode \textbf{collision} qui à l'aide d´une fonction \cite[CCW]{ccw_intersect_detection} permet de savoir si deux segments se croisent.
+
+En considérant un instant de trajectoire comme étant un segment, on peut vérifier si il ne rentre pas en collision avec la surface grâce à cette méthode.
+
+\subsection{Tests}
+
+Afin de vérifier le bon fonctionnement de notre code, nous avons mis en place des tests.
+Ces tests se divisent en trois catégorites qui composent ces parties.
+On va voir dans un premier temps les \textbf{tests unitaires} qui permettent de tester les fonctions et méthodes importantes et de manières indépendantes
+au reste du code.
+Il enn suivra les \textbf{tests d'intégration} qui permettent de tester le bon fonctionnement des modules entre eux.
+Et enfin les \textbf{tests fonctionnels} qui permettent de tester le bon fonctionnement de l'application dans son ensemble.
+
+Nous utiliserons la librairie \textbf{unittest} pour l'écriture de nos tests.
+
+\subsubsection{Tests unitaires}
+
+\textbf{Environnement}
+Afin de tester l'environnement, nous avons récuperer les réponses dynimiques de l'environnement présent sur \cite[CodinGame]{codingame_mars_lander} 
+et nous avons comparer les états à chaque instant à ceux calculer par notre environnement.\\
+De plus on a fait des tests pour vérifier que les collisions avec la surface étaient bien détectées. 
+Et notamment que les collisions avec avec le site d'atterissage est bien détecté et que si le vaisseau 
+sort de la carte, ce soit bien détecté par l'environnement.
+
+
+\textbf{Score}
+Les fonctions étant simplement des fonctions mathématiques dépendant d'un paramètre du problème, nous n'avons pas jugé nécessaire de faire des tests unitaires
+excepté pour la fonction qui permet de calculer la distance entre la zone de collision et la zone d'atterissage.
+En effet, ce n'est pas une simple distance euclidienne, mais plutot la distance en suivant la surface de l'environnement.
+On a pu vérifier le bon fonctionnement de cette fonction à l'aide de cas caculé à la main.
+Et les trois tests nous permettent de nous laisser penser que :
+\begin{itemize}
+    \item La distance est bien décroissante si l'on se dirige vers la zone d'atterissage
+    \item La distance est bien calculée
+\end{itemize}
+
+\textbf{Algorithme Génétique}
+Ces tests unitaires sont destinés à évaluer le fonctionnement de certaines fonctionnalités de l'algorithme génétique mise en œuvre.
+
+On test tout d'abord la génération d'une population. Il crée une population de 10 individus, chacun ayant 100 gènes du type "ActionChromosome". 
+Les assertions comparent la longueur de la population, la longueur des gènes du premier individu, 
+et s'assurent que la longueur des gènes est la même pour tous les individus, tout en vérifiant qu'il y a des différences entre les gènes des deux premiers individus.
+    
+Puis on test la \textbf{cumulative wheel}, ce test évalue la fonction qui génère une roue cumulative pour la sélection d'individus. 
+Une population de 10 individus est créée avec des scores aléatoires. 
+La population est triée en fonction des scores, puis la roue cumulative est générée. 
+Les assertions vérifient que la longueur de la roue cumulative est correcte, 
+et que chaque élément de la roue est une paire d'individus de type "ActionChromosome", avec des identifiants différents.
+
+Enfin on vérifie \textbf{la sélection} du/des meilleur individu dans une population.Ce test évalue la fonction de sélection du meilleur individu dans une population. 
+Une population de 10 individus est créée, chaque individu ayant un score égal à son index. La population est triée en fonction des scores,
+et la meilleure solution est sélectionnée. Les assertions comparent le score de la meilleure solution avec l'index attendu, soit 9 dans ce cas.
+En résumé, ces tests garantissent le bon fonctionnement de différentes parties de la solution génétique, y compris la génération de populations, la création de roues cumulatives pour la sélection, et la sélection du meilleur individu dans une population.
+
 \subsection{Problèmes rencontrés}
 
 Tout au long du projet, on a essayé de garder une architecture de code permettant une meilleure répartition des processus
 tout en gardant une cohérence dans le code. 
 
 Nous voulions diviser les repertoires github entre le frontend et le backend, mais nous avons finalement pas rencontrés ce besoins étant donné
-que l'on travaillait sur le même langage. C'est pourquoi le nom du repertoire est \textbf{backend}.
+que l'on travaillait sur le même langage. 
+
+N'ayant pas de deadline claire, on a pu prendre le temps de bien réfléchir à l'architecture du code et à la répartition des tâches mais 
+ca nous a aussi conduit a prendre plus de temps que nécessaire pour certaines tâches.
+Finalement, on s'est remis à faire des deadlines pour pouvoir avancer plus rapidement.
 
 
 
+\subsection{Manuel utilisateur}
 
-\pagebreak
+Afin de lancer le programme, il faut tout d'abord installer les dépendances du projet présentes dans le fichier \textbf{requirements.txt}.
+Pour cela on peut utiliser la commande suivante:
+\begin{lstlisting}[style=bash]
+    pip install -r requirements.txt
+\end{lstlisting}
+
+
+Une fois les dépendances installées, on peut lancer le programme à l'aide de la commande suivante:
+\begin{lstlisting}[style=bash]
+    python src/launcher.py
+\end{lstlisting}
+
+
 \printbibliography
 \end{document}
